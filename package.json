@@ -1,0 +1,23 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Store-front project - a CLI app leveraging node.js and relational databases in MySQL.",
+  "main": "bamazon-customer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinfukuhara/bamazon.git"
+  },
+  "author": "Kevin Fukuhara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinfukuhara/bamazon/issues"
+  },
+  "homepage": "https://github.com/kevinfukuhara/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^6.3.1",
+    "mysql": "^2.17.1"
+  }
+}
