@@ -45,7 +45,7 @@ function managerPrompt() {
                     addInventory();
                     break;
                 case 'Add New Product.':
-                
+                    addProduct()
                     break;
                 default:
                     console.log("Thank you, have a nice day!");
@@ -105,7 +105,7 @@ function addInventory() {
                 if (err) throw err;
 
                 // Validate whether or not the requested item is valid
-                if (res[0].length === 0) {
+                if (res.length === 0) {
                     // Not a valid product case
                     console.log("Not a valid item please try again.\n");
                     managerPrompt();
@@ -138,7 +138,7 @@ function addInventory() {
                             console.log("Item successfully updated! Printing results now... \n");
 
                             var query = "SELECT * FROM products WHERE item_id=" + res[0].item_id;
-                            
+
                             connection.query(query, function (err, res) {
                                 if (err) throw err;
 
@@ -148,9 +148,70 @@ function addInventory() {
                                 managerPrompt();
                             });
                         });
-                    }
+                }
             });
 
+        });
+}
+
+function addProduct() {
+    inquirer
+        .prompt([
+            // Here we give the user a list to choose from.
+            {
+                type: "input",
+                message: "Please enter the name of the product you'd like to begin selling?",
+                // validate: function(ans) {
+                //     return (typeof ans === 'number');
+                // },
+                name: "item"
+            },
+            {
+                type: "input",
+                message: "Which department would this item belong to?",
+                // validate: function(ans) {
+                //     return (typeof ans === 'number');
+                // },
+                name: "department"
+            },
+            {
+                type: "number",
+                message: "How much would you sell each unit for?",
+                // validate: function(ans) {
+                //     return (typeof ans === 'number');
+                // },
+                name: "price"
+            },
+            {
+                type: "input",
+                message: "How many units will you have in stock?",
+                // validate: function(ans) {
+                //     return (typeof ans === 'number');
+                // },
+                name: "stock"
+            }
+        ])
+        .then(function (inquirerResponse) {
+            console.log("Generating item log for: " + inquirerResponse.item + "...");
+
+            var query = "INSERT INTO products(product_name, department_name, price, stock_quantity, product_sales)\n" + "VALUES('" + inquirerResponse.item + "','" + inquirerResponse.department + "','" + inquirerResponse.price + "','" + inquirerResponse.stock + "',0)";
+
+            connection.query(query, function (error) {
+                    if (error) throw error;
+
+                    console.log("Successfully added! Printing results now... \n");
+
+                    var query = "SELECT * FROM products";
+
+                    connection.query(query, function (err, res) {
+                        if (err) throw err;
+
+                        console.table(res);
+
+                        // Back to beginning
+                        managerPrompt();
+                    });
+                });
         });
 }
 
