@@ -11,7 +11,7 @@ Store-front project - a CLI app leveraging node.js and relational databases in M
 The inventory is stored in MySQL Database and node.js along with node packages are used to inquire for, ingest, and display that data. 
 
 ###Below is a link to view a demo of the project:
-[Google Drive Link](...)
+[Google Drive Link](https://drive.google.com/file/d/1c32AvMCaqbxD23GWGIktZYbXjwNu4BCA/view?usp=sharing)
 
 ##Purpose of this project: 
 Bamazon takes us into using a traditional database: MySQL and reinforcing what we have learned with MySQL. Bamazon teaches us how to do simple database utilization and manipulation.
